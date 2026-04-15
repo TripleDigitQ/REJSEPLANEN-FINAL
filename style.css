@@ -30,7 +30,7 @@ body {
 .phone {
   width: 360px;
   height: 828px;
-  background: #f3f3f4;
+  background: #ffffff;
   border-radius: 40px;
   overflow: hidden;
   position: relative;
@@ -439,7 +439,7 @@ body {
   margin: -18px auto 0;
   padding: 9px 26px;
   border-radius: 14px;
-  background: #5a5a5f;
+  background: #5e5e5e;
   color: #ffffff;
   font-size: 15px;
   font-weight: 500;
