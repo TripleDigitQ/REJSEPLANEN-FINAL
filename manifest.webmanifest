@@ -1,0 +1,17 @@
+{
+  "name": "rejsekort",
+  "short_name": "rejsekort",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#fafafb",
+  "theme_color": "#1f4bd8",
+  "icons": [
+    {
+      "src": "logo.png",
+      "sizes": "120x120",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
