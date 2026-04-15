@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>rejsekort</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="phone">
+  <div class="topbar">
+    <div class="menu" aria-label="Menu">&#9776;</div>
+    <img class="logo" src="logo.png" alt="rejsekort logo">
+    <div class="top-title">rejsekort</div>
+  </div>
+
+  <div class="content">
+    <div class="user" id="userInfo">
+      <div class="username" id="usernameText">Alexander Kristiansen</div>
+      <div class="usertype" id="userTypeText">Standard <span class="dot">&bull;</span> Ung</div>
+    </div>
+
+    <div class="illustration">
+      <img src="illustration.png" alt="App illustration">
+    </div>
+
+    <button class="quick-switch" id="quickSwitchBtn" type="button" aria-label="V&aelig;lg profil">
+      <span class="quick-icon" aria-hidden="true"></span>
+    </button>
+
+    <div class="location">
+      <div class="address">
+        <div class="place" id="placeText">Aars Sv&oslash;mmehal (Himmerlandsgade)</div>
+        <div class="sub" id="subText">Check ind f&oslash;r du st&aring;r p&aring;</div>
+      </div>
+      <button class="edit" id="editLocationBtn" type="button">&AElig;ndre</button>
+    </div>
+  </div>
+
+  <div class="bottom">
+    <img class="eye" src="eye.png" alt="">
+    <div class="slider" id="slider">
+      <div class="slider-fill" id="sliderFill"></div>
+      <div class="timer" id="timer">00.00</div>
+      <div class="label" id="label">Check ind</div>
+      <div class="handle green" id="handle"><span>&gt;</span></div>
+    </div>
+  </div>
+
+  <div class="picker-modal" id="nameModal" aria-hidden="true">
+    <button class="picker-backdrop" id="nameBackdrop" type="button" aria-label="Luk"></button>
+    <div class="picker-sheet">
+      <div class="picker-title">V&aelig;lg navn</div>
+      <div class="picker-list" id="nameList"></div>
+    </div>
+  </div>
+
+  <div class="picker-modal" id="locationModal" aria-hidden="true">
+    <button class="picker-backdrop" id="locationBackdrop" type="button" aria-label="Luk"></button>
+    <div class="picker-sheet">
+      <div class="picker-title">V&aelig;lg stop</div>
+      <div class="picker-list" id="locationList"></div>
+    </div>
+  </div>
+</div>
+
+<audio id="sound" src="checkInCheckOut.wav"></audio>
+<script src="script.js"></script>
+</body>
+</html>

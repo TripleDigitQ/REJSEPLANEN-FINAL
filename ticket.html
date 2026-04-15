@@ -1,0 +1,596 @@
+﻿<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Billet</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #0d0d0d;
+}
+
+.ticket-phone {
+  width: 360px;
+  height: 828px;
+  background: #fafafb;
+  border-radius: 40px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 26px 64px rgba(0, 0, 0, 0.42);
+}
+
+.ticket-phone::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 7px;
+  width: 126px;
+  height: 4px;
+  border-radius: 999px;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.78);
+}
+
+.ticket-top {
+  height: 92px;
+  padding-top: 44px;
+  background: #1f4bd8;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  font-weight: 600;
+  gap: 8px;
+}
+
+.ticket-back {
+  position: absolute;
+  left: 16px;
+  top: calc(50% + 20px);
+  transform: translateY(-50%);
+  width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  background: transparent;
+  border: 0;
+  color: #fff;
+  cursor: pointer;
+}
+
+.ticket-back svg {
+  width: 11px;
+  height: 17px;
+  display: block;
+}
+
+.ticket-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ticket-logo {
+  height: 26px;
+  width: auto;
+}
+
+.ticket-title {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.ticket-body {
+  display: flex;
+  flex-direction: column;
+  height: calc(100% - 92px);
+}
+
+.qr-zone {
+  flex: 0 0 356px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f7f7f9;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='84' height='84' viewBox='0 0 84 84'%3E%3Cg fill='none' stroke='%23e8ebf1' stroke-width='2'%3E%3Cpath d='M-28 14C-16 2 0 2 12 14s28 12 40 0 28-12 40 0 28 12 40 0'/%3E%3Cpath d='M-28 34C-16 22 0 22 12 34s28 12 40 0 28-12 40 0 28 12 40 0'/%3E%3Cpath d='M-28 54C-16 42 0 42 12 54s28 12 40 0 28-12 40 0 28 12 40 0'/%3E%3Cpath d='M-28 74C-16 62 0 62 12 74s28 12 40 0 28-12 40 0 28 12 40 0'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 84px 84px;
+}
+
+.qr-image-wrap {
+  width: 266px;
+  height: 266px;
+  overflow: hidden;
+  flex: 0 0 auto;
+}
+
+#qrImage {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+  image-rendering: crisp-edges;
+}
+
+.clock-strip {
+  background: linear-gradient(90deg, #ff933d 0%, #e33f88 50%, #eb5a9f 100%);
+  color: #fff;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  letter-spacing: 0.3px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.valid-strip {
+  background: #2146d0;
+  color: #fff;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.section {
+  background: #f3f3f4;
+  padding: 14px 18px;
+  border-top: 1px solid #e3e4e9;
+}
+
+.section.with-border {
+  border-top: 1px solid #d8d9de;
+  min-height: 98px;
+}
+
+.meta {
+  color: #5f636d;
+  font-size: 13px;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.title {
+  color: #47484e;
+  font-size: 16px;
+  line-height: 1.2;
+  font-weight: 600;
+  margin-top: 0;
+  max-width: calc(100% - 118px);
+}
+
+.section-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.chip {
+  border-radius: 2px;
+  background: #dbdde7;
+  color: #363a42;
+  padding: 5px 10px;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.location-line {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.person-name {
+  color: #47484e;
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.15;
+}
+
+.person-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.person-sub {
+  color: #6d6f78;
+  font-size: 14px;
+  margin-top: 6px;
+  line-height: 1;
+  font-weight: 400;
+}
+
+.chip.age-chip {
+  margin-bottom: 1px;
+}
+
+.chip-button {
+  border: 0;
+  cursor: pointer;
+}
+
+.person-sub.clickable {
+  cursor: pointer;
+}
+
+.picker-modal {
+  position: absolute;
+  inset: 0;
+  z-index: 30;
+  pointer-events: none;
+}
+
+.picker-modal.open {
+  pointer-events: auto;
+}
+
+.picker-backdrop {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  background: rgba(0, 0, 0, 0.28);
+  opacity: 0;
+  transition: opacity 180ms ease;
+}
+
+.picker-modal.open .picker-backdrop {
+  opacity: 1;
+}
+
+.picker-sheet {
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 26px;
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 14px 12px 12px;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.22);
+  transform: translateY(18px);
+  opacity: 0;
+  transition: transform 180ms ease, opacity 180ms ease;
+}
+
+.picker-modal.open .picker-sheet {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.picker-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #2f3440;
+  margin: 0 2px 10px;
+}
+
+.picker-list {
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+.picker-item {
+  width: 100%;
+  border: 0;
+  border-radius: 12px;
+  background: #f2f4f9;
+  color: #434852;
+  padding: 10px 12px;
+  text-align: left;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 8px;
+}
+
+.picker-item.active {
+  background: #e5f4ee;
+  box-shadow: inset 0 0 0 1px rgba(27, 170, 120, 0.35);
+}
+
+@media (max-width: 520px) {
+  body {
+    background: #fafafb;
+    align-items: stretch;
+  }
+
+  .ticket-phone {
+    width: 100vw;
+    height: 100dvh;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .ticket-phone::after {
+    bottom: calc(8px + env(safe-area-inset-bottom));
+  }
+}
+</style>
+</head>
+<body>
+<div class="ticket-phone">
+  <div class="ticket-top">
+    <a class="ticket-back" href="index.html" aria-label="Tilbage til vis billet">
+      <svg viewBox="0 0 12 20" aria-hidden="true">
+        <path d="M10 2L2 10L10 18" stroke="#ffffff" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" fill="none"></path>
+      </svg>
+    </a>
+    <div class="ticket-brand">
+      <img class="ticket-logo" src="logo.png" alt="rejsekort logo">
+      <div class="ticket-title">rejsekort</div>
+    </div>
+  </div>
+
+  <div class="ticket-body">
+    <div class="qr-zone">
+      <div class="qr-image-wrap">
+        <img id="qrImage" src="assets/ticket-qr-original.png" alt="QR-kode">
+      </div>
+    </div>
+
+    <div class="clock-strip" id="clock">--:--:--</div>
+    <div class="valid-strip">Gyldig fra <span id="from"></span></div>
+
+    <div class="section">
+      <div class="meta">Fra</div>
+      <div class="location-line">
+        <div class="title" id="ticketPlaceText">Aars Sv&oslash;mmehal (Himmerlandsgade)</div>
+        <span class="chip">Standard</span>
+      </div>
+    </div>
+
+    <div class="section with-border">
+      <div class="person-row">
+        <div>
+          <div class="person-name" id="ticketNameText">Alexander Kristiansen</div>
+          <div class="person-sub clickable" id="personSubText">10.11.2009 - 16 &aring;r</div>
+        </div>
+        <button class="chip age-chip chip-button" id="ageChipBtn" type="button">Ung</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="picker-modal" id="ageModal" aria-hidden="true">
+    <button class="picker-backdrop" id="ageBackdrop" type="button" aria-label="Luk"></button>
+    <div class="picker-sheet">
+      <div class="picker-title">V&aelig;lg alder</div>
+      <div class="picker-list" id="ageList"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+const fromEl = document.getElementById('from');
+const clockEl = document.getElementById('clock');
+const ticketPlaceText = document.getElementById('ticketPlaceText');
+const ticketNameText = document.getElementById('ticketNameText');
+const personSubText = document.getElementById('personSubText');
+const ageChipBtn = document.getElementById('ageChipBtn');
+const ageModal = document.getElementById('ageModal');
+const ageBackdrop = document.getElementById('ageBackdrop');
+const ageList = document.getElementById('ageList');
+
+const STORAGE_LOCATIONS_KEY = 'rejsekort.customLocations.v2';
+const STORAGE_ACTIVE_LOCATION_KEY = 'rejsekort.activeLocation.v2';
+const STORAGE_NAMES_KEY = 'rejsekort.customNames.v1';
+const STORAGE_ACTIVE_NAME_KEY = 'rejsekort.activeName.v1';
+const STORAGE_ACTIVE_AGE_KEY = 'rejsekort.activeAge.v1';
+const LEGACY_LOCATION_KEY = 'rk_location';
+const LEGACY_NAME_KEY = 'rk_name';
+const ageProfiles = [
+  { birthDate: '10.11.2009', ageText: '16 år' },
+  { birthDate: '24.01.2010', ageText: '16 år' },
+  { birthDate: '05.03.2010', ageText: '16 år' },
+  { birthDate: '17.07.2009', ageText: '16 år' },
+  { birthDate: '29.09.2009', ageText: '16 år' }
+];
+let currentAgeIndex = 0;
+
+function formatTimeWithColons(date) {
+  const hh = String(date.getHours()).padStart(2, '0');
+  const mm = String(date.getMinutes()).padStart(2, '0');
+  const ss = String(date.getSeconds()).padStart(2, '0');
+  return `${hh}:${mm}:${ss}`;
+}
+
+function formatTimeWithDots(date) {
+  const hh = String(date.getHours()).padStart(2, '0');
+  const mm = String(date.getMinutes()).padStart(2, '0');
+  const ss = String(date.getSeconds()).padStart(2, '0');
+  return `${hh}.${mm}.${ss}`;
+}
+
+function formatFromDate(date) {
+  return `${date.toLocaleDateString('da-DK')} ${formatTimeWithDots(date)}`;
+}
+
+function updateClock() {
+  if (!clockEl) {
+    return;
+  }
+  clockEl.textContent = formatTimeWithColons(new Date());
+}
+
+function closeAgeModal() {
+  if (!ageModal) {
+    return;
+  }
+  ageModal.classList.remove('open');
+  ageModal.setAttribute('aria-hidden', 'true');
+}
+
+function openAgeModal() {
+  if (!ageModal) {
+    return;
+  }
+  ageModal.classList.add('open');
+  ageModal.setAttribute('aria-hidden', 'false');
+}
+
+function setAgeByIndex(index, shouldPersist = true) {
+  currentAgeIndex = Math.max(0, Math.min(index, ageProfiles.length - 1));
+  const selected = ageProfiles[currentAgeIndex];
+  if (personSubText) {
+    personSubText.textContent = `${selected.birthDate} - ${selected.ageText}`;
+  }
+  if (ageChipBtn) {
+    ageChipBtn.textContent = 'Ung';
+  }
+  if (shouldPersist) {
+    localStorage.setItem(STORAGE_ACTIVE_AGE_KEY, String(currentAgeIndex));
+  }
+}
+
+function renderAgePicker() {
+  if (!ageList) {
+    return;
+  }
+  ageList.innerHTML = '';
+  ageProfiles.forEach((item, index) => {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'picker-item';
+    if (index === currentAgeIndex) {
+      button.classList.add('active');
+    }
+    button.textContent = `${item.birthDate} - ${item.ageText}`;
+    button.addEventListener('click', () => {
+      setAgeByIndex(index, true);
+      renderAgePicker();
+      closeAgeModal();
+    });
+    ageList.append(button);
+  });
+}
+
+function initAgePicker() {
+  const storedIndex = Number.parseInt(localStorage.getItem(STORAGE_ACTIVE_AGE_KEY) || '0', 10);
+  const safeIndex = Number.isNaN(storedIndex) ? 0 : Math.max(0, Math.min(storedIndex, ageProfiles.length - 1));
+  setAgeByIndex(safeIndex, false);
+  renderAgePicker();
+
+  if (personSubText) {
+    personSubText.addEventListener('click', openAgeModal);
+  }
+  if (ageChipBtn) {
+    ageChipBtn.addEventListener('click', openAgeModal);
+  }
+  if (ageBackdrop) {
+    ageBackdrop.addEventListener('click', closeAgeModal);
+  }
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape') {
+      closeAgeModal();
+    }
+  });
+}
+
+function applySelectedLocation() {
+  if (!ticketPlaceText) {
+    return;
+  }
+
+  try {
+    const legacyLocation = localStorage.getItem(LEGACY_LOCATION_KEY);
+    if (legacyLocation && legacyLocation.trim()) {
+      ticketPlaceText.textContent = legacyLocation.trim();
+      return;
+    }
+
+    const raw = localStorage.getItem(STORAGE_LOCATIONS_KEY);
+    const parsed = JSON.parse(raw || '[]');
+    if (!Array.isArray(parsed) || !parsed.length) {
+      return;
+    }
+
+    const storedIndex = Number.parseInt(localStorage.getItem(STORAGE_ACTIVE_LOCATION_KEY) || '0', 10);
+    const safeIndex = Number.isNaN(storedIndex) ? 0 : Math.max(0, Math.min(storedIndex, parsed.length - 1));
+    const selected = parsed[safeIndex];
+    if (typeof selected === 'string' && selected.trim()) {
+      ticketPlaceText.textContent = selected.trim();
+      return;
+    }
+    if (selected && typeof selected.place === 'string' && selected.place.trim()) {
+      ticketPlaceText.textContent = selected.place.trim();
+    }
+  } catch {
+    /* ignore broken local storage data */
+  }
+}
+
+function applySelectedProfile() {
+  if (!ticketNameText) {
+    return;
+  }
+
+  try {
+    const legacyName = localStorage.getItem(LEGACY_NAME_KEY);
+    if (legacyName && legacyName.trim()) {
+      ticketNameText.textContent = legacyName.trim();
+      return;
+    }
+
+    const raw = localStorage.getItem(STORAGE_NAMES_KEY);
+    const parsed = JSON.parse(raw || '[]');
+    if (!Array.isArray(parsed) || !parsed.length) {
+      return;
+    }
+
+    const storedIndex = Number.parseInt(localStorage.getItem(STORAGE_ACTIVE_NAME_KEY) || '0', 10);
+    const safeIndex = Number.isNaN(storedIndex) ? 0 : Math.max(0, Math.min(storedIndex, parsed.length - 1));
+    const selected = parsed[safeIndex];
+    if (typeof selected === 'string' && selected.trim()) {
+      ticketNameText.textContent = selected.trim();
+      return;
+    }
+    if (selected && typeof selected.name === 'string' && selected.name.trim()) {
+      ticketNameText.textContent = selected.name.trim();
+    }
+  } catch {
+    /* ignore broken local storage data */
+  }
+}
+
+const start = new Date();
+if (fromEl) {
+  fromEl.textContent = formatFromDate(start);
+}
+
+updateClock();
+setInterval(updateClock, 1000);
+applySelectedLocation();
+applySelectedProfile();
+initAgePicker();
+</script>
+</body>
+</html>
