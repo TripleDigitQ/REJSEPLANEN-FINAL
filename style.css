@@ -533,13 +533,11 @@ body {
   body {
     background: #fafafb;
     align-items: stretch;
-    min-height: 100svh;
   }
 
   .phone {
     width: 100vw;
-    height: 100svh;
-    min-height: 100svh;
+    height: 100dvh;
     border-radius: 0;
     box-shadow: none;
   }
