@@ -27,6 +27,7 @@ const STORAGE_ACTIVE_NAME_KEY = 'rejsekort.activeName.v1';
 const STORAGE_ACTIVE_LOCATION_KEY = 'rejsekort.activeLocation.v2';
 const STORAGE_NAMES_KEY = 'rejsekort.customNames.v1';
 const STORAGE_LOCATIONS_KEY = 'rejsekort.customLocations.v2';
+const TICKET_ENTRY_KEY = 'rejsekort.ticketEntry.v1';
 const LEGACY_NAME_KEY = 'rk_name';
 const LEGACY_LOCATION_KEY = 'rk_location';
 const LOCATION_HELP_TEXT = 'Check ind f\u00f8r du st\u00e5r p\u00e5';
@@ -267,6 +268,7 @@ function showVisBillet() {
   visBilletBtn.textContent = 'Vis billet';
   visBilletBtn.style.cursor = 'pointer';
   visBilletBtn.onclick = () => {
+    sessionStorage.setItem(TICKET_ENTRY_KEY, '1');
     window.location.href = 'ticket.html';
   };
 
@@ -472,4 +474,5 @@ if (slider && handle && sliderFill) {
 }
 
 document.addEventListener('swipeCompleted', setValidityStart);
+sessionStorage.removeItem(TICKET_ENTRY_KEY);
 initNameAndLocation();
