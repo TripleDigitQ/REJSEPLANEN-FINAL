@@ -1,4 +1,4 @@
-﻿const illustrationImg = document.querySelector('.illustration img');
+const illustrationImg = document.querySelector('.illustration img');
 const originalIllustrationSrc = illustrationImg ? illustrationImg.src : null;
 
 const slider = document.getElementById('slider');
@@ -79,7 +79,10 @@ const locations = [
   'Hvalpsund Havn (Vesthimm. Komm.)',
   'Haverslev Pendlerparkering (Rebild Kommune)',
   'Ravnkilde Skole (Skolegade / Rebild Kommune)',
-  'Nørager Station (Rebild Kommune)'
+  'Nørager Station (Rebild Kommune)',
+  'Hjallerup Busterminal',
+  'Hjallerup Markedsplads',
+  'Vognsild (Smedevej / Vesthimm. komm.)',
 ];
 
 let visBilletBtn = null;
