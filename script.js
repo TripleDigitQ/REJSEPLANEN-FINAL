@@ -72,7 +72,7 @@ const locations = [
   'Tulipanvej (Nørregade / Farsø / Vesthimmerland)',
   'Industrivej (Søndergade / Farsø)',
   'Svingelbjerg (Klovenhøjvej / Vesthimm. Komm.)',
-  'Gatten (Stationvej / Vesthimm. Komm.)',
+  'hans Egedes Vej (/ Vesthimm. Komm.)',
   'Ullits (Nibevej / Vesthimm. Komm.)',
   'Aalestrup Busterminal / Vesthimm. Komm.)',
   'Viborg Rtb.',
